@@ -47,7 +47,7 @@ function createAMultiDimensional(arr, numOfGroups){
         /**
          * when we push we are slicing and creating a copy of the array and we are starting at 0 and then we are doing i + numOfGroups (on the first iteration it should be 0 + 5)
          * on the second iteration i is now 5 since we are doing i += numOfGroups 
-         * in the meat of potatoes of the for loop we will get starting at 5 since we are pointing at i and then we are doing (i + numOfGroups and that 5 + 5)
+         * in the meat of potatoes of the for loop we will slice starting at 5 since we are pointing at i and then we are doing (i + numOfGroups and that is 5 + 5)
          */
         multiArray.push(arr.slice(i, i + numOfGroups))
     }
