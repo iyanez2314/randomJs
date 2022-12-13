@@ -1,63 +1,82 @@
 /**
- * PROBLEM 
+ * PROBLEM
  * I will need to make a function that takes in 2 parameteres one being a array, the other being the group size
- * If there is some people who are left over I will need to randomize what group they are assigned to. 
+ * If there is some people who are left over I will need to randomize what group they are assigned to.
  */
-
 
 /**
  * Pseudocode
  * I will need to make an array of people
- * 
+ *
  * I will also need to make a varaible that will hold the amount of groups that we need
- * 
+ *
  * I will need to loop through the array and push to a new array. (so that array that I am pushing to will be a multi dimensional array) [[john, paul, will], [isaac, titus, justin]]
- * 
+ *
  * I also need to take into account how many groups I am receiving so I need to make sure that the array length is not longer than the group size.
- * 
+ *
  * With the left overs I will need to push them into another array and then randomize that array to pushed into the multi dimensional array.
  */
 
-
-const pplArr = ['isaac', 'justin', 'monic', 'cason', 'rory', 'christian', 'jason', 'martin', 'spanky', 'tasha', 'david', 'kenneth', ];
-let groupAmount = 5; 
+const pplArr = [
+  "Said",
+  "Randy",
+  "Leonard",
+  "Nickolas",
+  "Chris",
+  "Johnny",
+  "Jason",
+  "Robert",
+  "Jiabin",
+  "Kenneth",
+  "Songju",
+  "Kailian",
+  "Aharown",
+  "Hung",
+  "Horace",
+  "Luke",
+  "Jona",
+  "Alexia",
+  "Mike",
+  "Fernando",
+  "Will",
+  "Jeffrey",
+  "Titus",
+  "Lonnie",
+  "Andre",
+  "Reginald",
+  "Ricardo",
+  "Joe",
+];
+let amountOfGroupsNeeded = 5;
 
 /**
- * 
- * @param {arr} arr the array we are randomizing 
+ *
+ * @param {*} arr the array we are randomizing
  * @returns the array that is randomized
  */
 
-function randomizeArray(arr){
-    return arr.sort(() => Math.random() - 0.5);
-};
-
-
+function randomizeArray(arr) {
+  return arr.sort(() => Math.random() - 0.5);
+}
 /**
- * 
- * @param {arr} arr the array that is going to be spit up 
- * @param {numOfGroups} numOfGroups the number of groups we want 
- * @returns a multi dimensional array that are grouped up
+ *
+ * @param {*} names list of names
+ * @param {*} numGroups number of groups needed
+ * @returns the groups that have been split up
  */
+function createGroups(names, numGroups) {
+  // Calculate the size of each group
+  const groupSize = Math.ceil(names.length / numGroups);
 
-function createAMultiDimensional(arr, numOfGroups){
-    const multiArray = [];
+  // Split the names into groups of the calculated size
+  const groups = [];
+  for (let i = 0; i < names.length; i += groupSize) {
+    groups.push(names.slice(i, i + groupSize));
+  }
 
-    for(let i = 0; i < arr.length; i += numOfGroups){
-        /**
-         * when we push we are slicing and creating a copy of the array and we are starting at 0 and then we are doing i + numOfGroups (on the first iteration it should be 0 + 5)
-         * on the second iteration i is now 5 since we are doing i += numOfGroups 
-         * in the meat of potatoes of the for loop we will slice starting at 5 since we are pointing at i and then we are doing (i + numOfGroups and that is 5 + 5)
-         */
-        multiArray.push(arr.slice(i, i + numOfGroups))
-    }
-    return multiArray;
+  return groups;
 }
 
-// This variable will hold a COPY of the ppl arr
-const randomized = randomizeArray(pplArr.slice());
-// This variable will hold the multi dimensional array we creating
-const multiArray = createAMultiDimensional(pplArr, groupAmount);
-console.log(multiArray);
-
-
+const randomized = randomizeArray(pplArr);
+const calculateGroups = createGroups(randomized, amountOfGroupsNeeded);
+console.log(calculateGroups);
